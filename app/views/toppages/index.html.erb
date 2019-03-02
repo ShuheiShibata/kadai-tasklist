@@ -1,16 +1,28 @@
 <% if logged_in? %>
   <div class="row">
     <aside class="col-md-4">
-      <%= form_for(@tasklist) do |f| %>
+      <%= form_for(@task) do |f| %>
         <div class="form-group">
+          <%= f.label :content, 'タスク' %>
           <%= f.text_area :content, class: 'form-control', rows: 5 %>
+          <%= f.label :status, 'ステータス' %>
           <%= f.text_area :status, class: 'form-control', rows: 5 %>
         </div>
         <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>
     </aside>
     <div class="col-xs-8">
-      <%= render 'tasks/tasks', tasks: @tasks %>
+      <ul>
+        <%= render 'tasks/tasks', tasks: @tasks %>
+        <!-- comment out
+        <%# @tasks.each do |task| %>
+          <%#= render 'tasks/tasks' tasks: @tasks %>
+          <li><%#= link_to task.id, task %></li>
+          <li><%#= task.content %></li> 
+          <li><%#= task.status %></li>
+        <%# end %>
+        -->
+      </ul>
     </div>
   </div>
 <% else %>
